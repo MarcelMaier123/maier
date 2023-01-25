@@ -1,8 +1,27 @@
 @startuml
 
-entity Test {
+entity Radiosender {
+    *Name
+    ---
+    *PlayingMusic
+    *NextMusic
+}
+
+entity Musician {
     *Id
     ---
     *Firstname
+    *Lastname
+    *MostPopularSong
+    *Age
 }
+
+entity Konzerte {
+    *Id
+    ---
+    *NumberOfvisitors
+}
+
+Musician ||--o{ Konzerte
+
 @enduml
