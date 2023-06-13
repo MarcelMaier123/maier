@@ -1,0 +1,48 @@
+@startuml
+!define PK(x) entity(x) {
+  + PK [PK]
+  --
+  ...
+}
+!define FK(x) entity(x) {
+  --
+  FK
+  ...
+}
+hide empty attributes
+
+!define ENTITY(name, attributes) entity(name) {
+  attributes
+}
+
+!define RELATION(name, cardinality) entity(name, "", "", cardinality) {}
+
+ENTITY(User,
+  UserID PK INT [PK, AUTO_INCREMENT]
+  Username VARCHAR(255) NOT NULL
+  Email VARCHAR(255) NOT NULL
+  Password VARCHAR(255) NOT NULL
+  ...
+)
+
+ENTITY(Artist,
+  ArtistID PK INT [PK, AUTO_INCREMENT]
+  Name VARCHAR(255) NOT NULL
+  ...
+)
+
+ENTITY(Album,
+  AlbumID PK INT [PK, AUTO_INCREMENT]
+  Title VARCHAR(255) NOT NULL
+  ReleaseDate DATE NOT NULL
+  ...
+)
+
+ENTITY(Genre,
+  GenreID PK INT [PK, AUTO_INCREMENT]
+  Name VARCHAR(255) NOT NULL
+  ...
+)
+
+ENTITY(Song,
+ 
