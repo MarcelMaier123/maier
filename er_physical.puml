@@ -45,4 +45,38 @@ ENTITY(Genre,
 )
 
 ENTITY(Song,
- 
+  SongID PK INT [PK, AUTO_INCREMENT]
+  Title VARCHAR(255) NOT NULL
+  Duration TIME NOT NULL
+  ...
+)
+
+RELATION(User_Playlist, "1" -- "0..*" User, "1" -- "0..*" Playlist)
+
+ENTITY(Playlist,
+  PlaylistID PK INT [PK, AUTO_INCREMENT]
+  Name VARCHAR(255) NOT NULL
+  ...
+)
+
+RELATION(Playlist_Song, "1" -- "0..*" Playlist, "1" -- "0..*" Song)
+
+ENTITY(User_Follows_User,
+  UserFollowsUserID PK INT [PK, AUTO_INCREMENT]
+  FollowerUserID INT NOT NULL
+  FollowedUserID INT NOT NULL
+  ...
+)
+
+RELATION(Artist_Album, "1" -- "0..*" Artist, "1" -- "0..*" Album)
+
+RELATION(Album_Song, "1" -- "0..*" Album, "1" -- "0..*" Song)
+
+ENTITY(Song_Genre,
+  SongGenreID PK INT [PK, AUTO_INCREMENT]
+  SongID INT NOT NULL
+  GenreID INT NOT NULL
+  ...
+)
+
+@enduml
