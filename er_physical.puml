@@ -1,13 +1,10 @@
 @startuml
 !define PK(x) entity(x) {
   + PK [PK]
-  --
-  ...
 }
 !define FK(x) entity(x) {
   --
   FK
-  ...
 }
 hide empty attributes
 
@@ -22,33 +19,28 @@ ENTITY(User,
   Username VARCHAR(255) NOT NULL
   Email VARCHAR(255) NOT NULL
   Password VARCHAR(255) NOT NULL
-  ...
 )
 
 ENTITY(Artist,
   ArtistID PK INT [PK, AUTO_INCREMENT]
   Name VARCHAR(255) NOT NULL
-  ...
 )
 
 ENTITY(Album,
   AlbumID PK INT [PK, AUTO_INCREMENT]
   Title VARCHAR(255) NOT NULL
   ReleaseDate DATE NOT NULL
-  ...
 )
 
 ENTITY(Genre,
   GenreID PK INT [PK, AUTO_INCREMENT]
   Name VARCHAR(255) NOT NULL
-  ...
 )
 
 ENTITY(Song,
   SongID PK INT [PK, AUTO_INCREMENT]
   Title VARCHAR(255) NOT NULL
   Duration TIME NOT NULL
-  ...
 )
 
 RELATION(User_Playlist, "1" -- "0..*" User, "1" -- "0..*" Playlist)
@@ -56,7 +48,6 @@ RELATION(User_Playlist, "1" -- "0..*" User, "1" -- "0..*" Playlist)
 ENTITY(Playlist,
   PlaylistID PK INT [PK, AUTO_INCREMENT]
   Name VARCHAR(255) NOT NULL
-  ...
 )
 
 RELATION(Playlist_Song, "1" -- "0..*" Playlist, "1" -- "0..*" Song)
@@ -65,7 +56,6 @@ ENTITY(User_Follows_User,
   UserFollowsUserID PK INT [PK, AUTO_INCREMENT]
   FollowerUserID INT NOT NULL
   FollowedUserID INT NOT NULL
-  ...
 )
 
 RELATION(Artist_Album, "1" -- "0..*" Artist, "1" -- "0..*" Album)
@@ -76,7 +66,6 @@ ENTITY(Song_Genre,
   SongGenreID PK INT [PK, AUTO_INCREMENT]
   SongID INT NOT NULL
   GenreID INT NOT NULL
-  ...
 )
 
 @enduml
