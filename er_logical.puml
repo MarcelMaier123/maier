@@ -1,13 +1,10 @@
 @startuml
 !define PK(x) entity(x) {
   + PK
-  --
-  ...
 }
 !define FK(x) entity(x) {
   --
   FK
-  ...
 }
 hide empty attributes
 
@@ -22,33 +19,28 @@ ENTITY(User,
   Username NOT NULL
   Email NOT NULL
   Password NOT NULL
-  ...
 )
 
 ENTITY(Artist,
   ArtistID PK
   Name NOT NULL
-  ...
 )
 
 ENTITY(Album,
   AlbumID PK
   Title NOT NULL
   ReleaseDate NOT NULL
-  ...
 )
 
 ENTITY(Genre,
   GenreID PK
   Name NOT NULL
-  ...
 )
 
 ENTITY(Song,
   SongID PK
   Title NOT NULL
   Duration NOT NULL
-  ...
 )
 
 RELATION(User_Playlist, "1" -- "0..*" User, "1" -- "0..*" Playlist)
@@ -56,7 +48,6 @@ RELATION(User_Playlist, "1" -- "0..*" User, "1" -- "0..*" Playlist)
 ENTITY(Playlist,
   PlaylistID PK
   Name NOT NULL
-  ...
 )
 
 RELATION(Playlist_Song, "1" -- "0..*" Playlist, "1" -- "0..*" Song)
@@ -65,7 +56,6 @@ ENTITY(User_Follows_User,
   UserFollowsUserID PK
   FollowerUserID NOT NULL
   FollowedUserID NOT NULL
-  ...
 )
 
 RELATION(Artist_Album, "1" -- "0..*" Artist, "1" -- "0..*" Album)
@@ -76,7 +66,6 @@ ENTITY(Song_Genre,
   SongGenreID PK
   SongID NOT NULL
   GenreID NOT NULL
-  ...
 )
 
 @enduml
