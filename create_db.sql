@@ -1,6 +1,3 @@
--- create_db.sql
-
--- Create tables
 
 CREATE TABLE User (
   UserID INT PRIMARY KEY,
@@ -82,7 +79,6 @@ CREATE TABLE Song_Genre (
   GenreID INT NOT NULL,
   FOREIGN KEY (SongID) REFERENCES Song (SongID),
   FOREIGN KEY (GenreID) REFERENCES Genre (GenreID),
-  ...
 );
 
 
