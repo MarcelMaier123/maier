@@ -1,0 +1,82 @@
+@startuml
+!define PK(x) entity(x) {
+  + PK
+  --
+  ...
+}
+!define FK(x) entity(x) {
+  --
+  FK
+  ...
+}
+hide empty attributes
+
+!define ENTITY(name, attributes) entity(name) {
+  attributes
+}
+
+!define RELATION(name, cardinality) entity(name, "", "", cardinality) {}
+
+ENTITY(User,
+  UserID PK
+  Username NOT NULL
+  Email NOT NULL
+  Password NOT NULL
+  ...
+)
+
+ENTITY(Artist,
+  ArtistID PK
+  Name NOT NULL
+  ...
+)
+
+ENTITY(Album,
+  AlbumID PK
+  Title NOT NULL
+  ReleaseDate NOT NULL
+  ...
+)
+
+ENTITY(Genre,
+  GenreID PK
+  Name NOT NULL
+  ...
+)
+
+ENTITY(Song,
+  SongID PK
+  Title NOT NULL
+  Duration NOT NULL
+  ...
+)
+
+RELATION(User_Playlist, "1" -- "0..*" User, "1" -- "0..*" Playlist)
+
+ENTITY(Playlist,
+  PlaylistID PK
+  Name NOT NULL
+  ...
+)
+
+RELATION(Playlist_Song, "1" -- "0..*" Playlist, "1" -- "0..*" Song)
+
+ENTITY(User_Follows_User,
+  UserFollowsUserID PK
+  FollowerUserID NOT NULL
+  FollowedUserID NOT NULL
+  ...
+)
+
+RELATION(Artist_Album, "1" -- "0..*" Artist, "1" -- "0..*" Album)
+
+RELATION(Album_Song, "1" -- "0..*" Album, "1" -- "0..*" Song)
+
+ENTITY(Song_Genre,
+  SongGenreID PK
+  SongID NOT NULL
+  GenreID NOT NULL
+  ...
+)
+
+@enduml
