@@ -7,39 +7,33 @@ CREATE TABLE User (
   Username VARCHAR(255) NOT NULL,
   Email VARCHAR(255) NOT NULL,
   Password VARCHAR(255) NOT NULL,
-  ...
 );
 
 CREATE TABLE Artist (
   ArtistID INT PRIMARY KEY,
   Name VARCHAR(255) NOT NULL,
-  ...
 );
 
 CREATE TABLE Album (
   AlbumID INT PRIMARY KEY,
   Title VARCHAR(255) NOT NULL,
   ReleaseDate DATE NOT NULL,
-  ...
 );
 
 CREATE TABLE Genre (
   GenreID INT PRIMARY KEY,
   Name VARCHAR(255) NOT NULL,
-  ...
 );
 
 CREATE TABLE Song (
   SongID INT PRIMARY KEY,
   Title VARCHAR(255) NOT NULL,
   Duration TIME NOT NULL,
-  ...
 );
 
 CREATE TABLE Playlist (
   PlaylistID INT PRIMARY KEY,
   Name VARCHAR(255) NOT NULL,
-  ...
 );
 
 CREATE TABLE User_Playlist (
@@ -48,7 +42,6 @@ CREATE TABLE User_Playlist (
   PlaylistID INT NOT NULL,
   FOREIGN KEY (UserID) REFERENCES User (UserID),
   FOREIGN KEY (PlaylistID) REFERENCES Playlist (PlaylistID),
-  ...
 );
 
 CREATE TABLE Playlist_Song (
@@ -57,11 +50,48 @@ CREATE TABLE Playlist_Song (
   SongID INT NOT NULL,
   FOREIGN KEY (PlaylistID) REFERENCES Playlist (PlaylistID),
   FOREIGN KEY (SongID) REFERENCES Song (SongID),
-  ...
 );
 
 CREATE TABLE User_Follows_User (
   User_Follows_UserID INT PRIMARY KEY,
   FollowerUserID INT NOT NULL,
   FollowedUserID INT NOT NULL,
- 
+  FOREIGN KEY (FollowerUserID) REFERENCES User (UserID),
+  FOREIGN KEY (FollowedUserID) REFERENCES User (UserID),
+);
+
+CREATE TABLE Artist_Album (
+  Artist_AlbumID INT PRIMARY KEY,
+  ArtistID INT NOT NULL,
+  AlbumID INT NOT NULL,
+  FOREIGN KEY (ArtistID) REFERENCES Artist (ArtistID),
+  FOREIGN KEY (AlbumID) REFERENCES Album (AlbumID),
+);
+
+CREATE TABLE Album_Song (
+  Album_SongID INT PRIMARY KEY,
+  AlbumID INT NOT NULL,
+  SongID INT NOT NULL,
+  FOREIGN KEY (AlbumID) REFERENCES Album (AlbumID),
+  FOREIGN KEY (SongID) REFERENCES Song (SongID),
+);
+
+CREATE TABLE Song_Genre (
+  Song_GenreID INT PRIMARY KEY,
+  SongID INT NOT NULL,
+  GenreID INT NOT NULL,
+  FOREIGN KEY (SongID) REFERENCES Song (SongID),
+  FOREIGN KEY (GenreID) REFERENCES Genre (GenreID),
+  ...
+);
+
+
+ALTER TABLE User ADD CONSTRAINT UQ_Username UNIQUE (Username);
+ALTER TABLE User ADD CONSTRAINT UQ_Email UNIQUE (Email);
+ALTER TABLE Artist ADD CONSTRAINT UQ_Name UNIQUE (Name);
+ALTER TABLE Album ADD CONSTRAINT UQ_Title UNIQUE (Title);
+ALTER TABLE Genre ADD CONSTRAINT UQ_Name UNIQUE (Name);
+
+
+ALTER TABLE Song ADD CONSTRAINT CK_Duration CHECK (Duration > '00:00:00');
+
